@@ -1,5 +1,8 @@
 # -*- coding: UTF-8 -*-
-
+"""
+作者：DullJZ
+Github仓库：https://github.com/DullJZ/zhixue-excel
+"""
 import json
 import os
 import win32clipboard as w
@@ -56,8 +59,8 @@ def sto(ll):
 def make_headline(jsons):
     head_line = ''
     head_line = head_line + '姓名' + separator + '学号' + separator + '总分' + separator + '班级排名' + separator + '年级排名'
-    for tmp in jsons['result']['allSubjectList']:
-        head_line = head_line + separator + tmp['subjectName']
+    for _tmp in jsons['result']['allSubjectList']:
+        head_line = head_line + separator + _tmp['subjectName']
     # 表头处理完成，开始添加表头
     with open(file_output, 'a+', encoding='utf-8') as _f:
         _f.write(head_line + '\n')
@@ -69,9 +72,9 @@ if __name__ == '__main__':
         file_url = './' + tmp
     if os.path.exists('res.txt'):  # 如果存在res.txt，则先删除，防止多次重复输出
         os.remove('res.txt')
-    tmp=input('输入分割符（默认为制表符）：')
+    tmp = input('输入分割符（默认为制表符）：')
     if tmp:
-        separator=tmp
+        separator = tmp
     index()
     with open('res.txt', 'r', encoding='utf-8') as f:
         # 复制到剪贴板
